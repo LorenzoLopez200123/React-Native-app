@@ -1,21 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import Home from './screens/Home'
+import Dashboard from './screens/Dashboard'
+import { useFonts } from 'expo-font'
+import AppLoading from 'expo-app-loading'
+import Routes from './components/Routes'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [loaded] = useFonts({
+    OpenSans: require('./assets/fonts/OpenSans-Regular.ttf'),
+    OpenSansBold: require('./assets/fonts/OpenSans-Bold.ttf'),
+  })
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (!loaded) return <AppLoading />
+
+  return <Routes />
+}
